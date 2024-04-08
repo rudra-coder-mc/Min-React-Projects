@@ -1,125 +1,39 @@
-import { useCallback, useEffect } from "react";
-import { useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 
 const PassWordJan = () => {
   const [Length, setLength] = useState(8);
   const [NumAllowed, setNumAllowed] = useState(false);
   const [CharAllowed, setCharAllowed] = useState(false);
   const [Password, setPassword] = useState("");
-  const InputFild = (prop) => {
-    const { type, label, value, onChange, ...otherProps } = prop.prop;
-    // Destructure props for clarity
-    const { id, defaultChecked } = otherProps;
-    // console.log(value);
+  const PasswordRef = useRef(null);
 
-    return (
-      <>
-        {type === "range" ? (
-          <>
-            <input
-              type="range"
-              value={value}
-              // onChange={handleChange}
-              onChange={onChange}
-              {...otherProps}
-            />
-            <label htmlFor={id}>{label}</label>
-          </>
-        ) : (
-          <>
-            <input
-              id={id}
-              type="checkbox"
-              checked={defaultChecked}
-              onChange={onChange}
-              {...otherProps}
-            />
-            <button className="text-white bg-green-500">{label}</button>
-          </>
-        )}
-      </>
-    );
-  };
-
-  // const InputFild = ({ InputsValue }) => {
-  //   let content;
-  //   if (InputsValue.type === "range") {
-  //     content = (
-  //       <>
-  //         <input {...InputsValue} onChange={InputsValue.onChange} />
-  //         <label>{InputsValue.label}</label>
-  //       </>
-  //     );
-  //   } else {
-  //     content = (
-  //       <>
-  //         <input
-  //           id={InputFild.id}
-  //           {...InputsValue}
-  //           onChange={() => InputsValue.onChange()}
-  //         />
-  //         <button className="text-white bg-green-500">
-  //           {InputsValue.label}
-  //         </button>
-  //       </>
-  //     );
-  //   }
-  //   return <>{content}</>;
-  // };
-  const checkBoxInputs = [
-    {
-      type: "range",
-      id: 1,
-      name: "range",
-      label: `Length ${Length}`,
-      value: Length,
-      min: 6,
-      max: 100,
-      onChange: (e) => setLength(() => e.target.value),
-    },
-    {
-      type: "checkbox",
-      id: "numberInput",
-      className: "",
-      name: "NumAllowed",
-      label: "NumAllowed",
-      defaultChecked: NumAllowed,
-      onChange: () => {
-        setNumAllowed((prev) => !prev);
-      },
-    },
-    {
-      type: "checkbox",
-      id: "characterInput",
-      className: "",
-      name: "CharAllowed",
-      label: "CharAllowed",
-      defaultChecked: CharAllowed,
-      onChange: () => {
-        setCharAllowed((prev) => !prev);
-      },
-    },
-  ];
   const PasswordJenrater = useCallback(() => {
-    let password = "";
+    let passW = "";
     let char = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
     if (NumAllowed) char += "1234567890";
     if (CharAllowed) char += "!@#$%^&*()_+{}:?";
 
-    for (let i = 0; i < Length; i++) {
+    for (let i = 1; i <= Length; i++) {
       let ind = Math.floor(Math.random() * char.length + 1);
 
-      password += char[ind];
+      // password += char[ind];
+      passW += char.charAt(ind);
     }
-    setPassword(password);
+    setPassword(passW);
   }, [Length, NumAllowed, CharAllowed, setPassword]);
 
   useEffect(() => {
     PasswordJenrater();
   }, [Length, NumAllowed, CharAllowed, PasswordJenrater]);
 
+  const CopyPassword = useCallback(() => {
+    PasswordRef.current?.select();
+    PasswordRef.current?.setSelectionRange(0, 100);
+    window.navigator.clipboard.writeText(Password);
+  }, [Password]);
+
   return (
-    <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
+    <div className=" max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
       <h1 className="text-white text-center my-3">Password generator</h1>
 
       <div className="flex shadow rounded-lg overflow-hidden mb-4 " id="Inpur">
@@ -127,8 +41,12 @@ const PassWordJan = () => {
           type="text"
           value={Password}
           className="outline-none w-full py-1 px-3"
+          ref={PasswordRef}
         />
-        <button className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0">
+        <button
+          className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0 hover:bg-blue-900"
+          onClick={CopyPassword}
+        >
           copy
         </button>
       </div>
@@ -145,7 +63,7 @@ const PassWordJan = () => {
           <label>{Length}</label>
         </div>
         <div className="flex items-center gap-x-1">
-          {/* <input
+          <input
             type="checkbox"
             defaultChecked={NumAllowed}
             id="numberInput"
@@ -153,43 +71,22 @@ const PassWordJan = () => {
               setNumAllowed((prev) => !prev);
             }}
           />
-          <label htmlFor="numberInput">Numbers</label> */}
+          <label htmlFor="numberInput">Numbers</label>
         </div>
 
         <div className="flex items-center gap-x-1">
-          {checkBoxInputs.map((Inputs) => (
-            <InputFild key={Inputs.id} prop={Inputs} />
-          ))}
-          {/* <input
+          <input
             type="checkbox"
             defaultChecked={CharAllowed}
             id="characterInput"
             onChange={() => {
               setCharAllowed((prev) => !prev);
             }}
-          /> */}
-          {/* <label htmlFor="characterInput">Characters</label> */}
+          />
+          <label htmlFor="characterInput">Characters</label>
         </div>
       </div>
     </div>
   );
 };
 export default PassWordJan;
-
-// const CheckBox = ({ inputsValue }) => {
-//
-//   return (
-//     <>
-//       <input
-//         className="ml-2"
-//         id={inputsValue.id}
-//         type="checkbox"
-//         {...inputsValue}
-//       />
-
-//       <label className="text-white" htmlFor={inputsValue.id}>
-//         {inputsValue.label}
-//       </label>
-//     </>
-//   );
-// };
