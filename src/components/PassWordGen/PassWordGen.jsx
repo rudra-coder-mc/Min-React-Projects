@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 
-const PassWordJan = () => {
+const PassWordGen = () => {
   const [Length, setLength] = useState(8);
   const [NumAllowed, setNumAllowed] = useState(false);
   const [CharAllowed, setCharAllowed] = useState(false);
@@ -89,4 +89,4 @@ const PassWordJan = () => {
     </div>
   );
 };
-export default PassWordJan;
+export default PassWordGen;
