@@ -3,9 +3,8 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import BgChange from "./components/BgChange/BgChange";
-import PassWordGen from "./components/PassWordGen/PassWordGen";
-import Currency from "./components/currency/Currency";
+
+import { Currency,PassWordGen,BgChange } from "./components";
 import Layout from "./Layout";
 import Home from "./Pages/Home";
 
