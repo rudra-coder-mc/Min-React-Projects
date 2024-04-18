@@ -7,6 +7,8 @@ import {
 import { Currency,PassWordGen,BgChange } from "./components";
 import Layout from "./Layout";
 import Home from "./Pages/Home";
+import Login from "./components/Login/Login";
+import DemonCard from "./components/Card/DemoCard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +17,8 @@ const router = createBrowserRouter(
       <Route path="bgChanger" element={<BgChange />} />
       <Route path="passwordGenerator" element={<PassWordGen />} />
       <Route path="currencyConvertor" element={<Currency />} />
+      <Route path="card" element={<DemonCard />} />
+      <Route path="Login" element={<Login />} />
     </Route>
   )
 );
