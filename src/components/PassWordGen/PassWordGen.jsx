@@ -15,8 +15,6 @@ const PassWordGen = () => {
 
     for (let i = 1; i <= Length; i++) {
       let ind = Math.floor(Math.random() * char.length + 1);
-
-      // password += char[ind];
       passW += char.charAt(ind);
     }
     setPassword(passW);
@@ -33,18 +31,26 @@ const PassWordGen = () => {
   }, [Password]);
 
   return (
-    <div className=" max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
-      <h1 className="text-white text-center my-3">Password generator</h1>
+    <div
+      className={`max-w-md mx-auto shadow rounded-lg px-4 py-3 my-8 bg-slate-300 dark:bg-gray-800 dark:text-white
+  `}
+    >
+      <h1 className="text-center my-3">Password generator</h1>
 
-      <div className="flex shadow rounded-lg overflow-hidden mb-4 " id="Inpur">
+      <div
+        className={`flex shadow rounded-lg overflow-hidden mb-4 
+       dark:bg-gray-700`}
+        id="Inpur"
+      >
         <input
           type="text"
           value={Password}
-          className="outline-none w-full py-1 px-3"
+          className="outline-none w-full py-1 px-3 dark:text-black"
           ref={PasswordRef}
         />
         <button
-          className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0 hover:bg-blue-900"
+          className={`outline-none px-3 py-0.5 shrink-0 hover:bg-blue-900 dark:bg-blue-700 dark:text-white
+          `}
           onClick={CopyPassword}
         >
           copy
@@ -54,7 +60,7 @@ const PassWordGen = () => {
         <div className="flex items-center gap-x-1">
           <input
             type="range"
-            className=""
+            className="w-full"
             min={6}
             max={100}
             value={Length}
@@ -89,4 +95,5 @@ const PassWordGen = () => {
     </div>
   );
 };
+
 export default PassWordGen;
