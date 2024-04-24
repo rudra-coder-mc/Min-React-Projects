@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import { Currency,PassWordGen,BgChange } from "./components";
+import { Currency,PassWordGen,BgChange, Todo } from "./components";
 import Layout from "./Layout";
 import Home from "./Pages/Home";
 import Login from "./components/Login/Login";
@@ -18,6 +18,7 @@ const router = createBrowserRouter(
       <Route path="passwordGenerator" element={<PassWordGen />} />
       <Route path="currencyConvertor" element={<Currency />} />
       <Route path="card" element={<DemonCard />} />
+      <Route path="Todo" element={<Todo />} />
       <Route path="Login" element={<Login />} />
     </Route>
   )

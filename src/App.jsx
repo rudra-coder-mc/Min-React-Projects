@@ -1,15 +1,16 @@
 import { RouterProvider } from "react-router-dom";
-import userContextProvider from "./contexts/userContext";
+// import userContextProvider from "./contexts/userContext";
 import router from "./Router";
 import ThemeContextProvider from "./contexts/theme";
+import { TodoProvider } from "./contexts";
 
 function App() {
   return (
     <>
       <ThemeContextProvider>
-        <userContextProvider>
+        <TodoProvider>
           <RouterProvider router={router} />
-        </userContextProvider>
+        </TodoProvider>
       </ThemeContextProvider>
     </>
   );

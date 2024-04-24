@@ -31,6 +31,9 @@ const Navigation = () => {
           <div className="hover:text-black hover:bg-white p-1">
             <NavLink to="card">card</NavLink>
           </div>
+          <div className="hover:text-black hover:bg-white p-1">
+            <NavLink to="Todo">Todo</NavLink>
+          </div>
         </nav>
         <div className="w-1/5 flex items-center justify-center gap-3">
           <span className="ml-3 text-sm font-medium text-gray-900 dark:text-white">

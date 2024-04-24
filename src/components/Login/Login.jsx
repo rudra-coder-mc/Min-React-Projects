@@ -2,7 +2,7 @@ import React from "react";
 
 const Login = () => {
   return (
-    <section class="bg-slate-300 dark:bg-gray-900">
+    <section class="bg-slate-200 dark:bg-gray-900">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
@@ -82,7 +82,7 @@ const Login = () => {
               >
                 Login
               </button>
-              <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              <p class="text-sm font-light text-gray-600 dark:text-gray-400">
                 Don’t have an account yet?{" "}
                 <a
                   href="#"
